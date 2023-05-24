@@ -5,13 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pagamento")
 public class Pagamento {
     @Id
-    @GeneratedValue(strategy = GeneratedValue.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long cod_pagamento;
 
     @Column
@@ -23,8 +25,8 @@ public class Pagamento {
     @Column
     private double valor;
 
-    @Column
-    private String cod_jogador;
+    @ManyToOne
+    private Jogador cod_jogador;
 
     public long getCod_pagamento() {
         return this.cod_pagamento;
@@ -33,14 +35,6 @@ public class Pagamento {
     public void setCod_pagamento(long cod_pagamento) {
         this.cod_pagamento = cod_pagamento;
     }
-
-    public Object get() {
-		return this.;
-	}
-
-    public void set(Object ) {
-		this. = ;
-	}
 
     public short getAno() {
         return this.ano;
@@ -66,11 +60,11 @@ public class Pagamento {
         this.valor = valor;
     }
 
-    public String getCod_jogador() {
+    public Jogador getCod_jogador() {
         return this.cod_jogador;
     }
 
-    public void setCod_jogador(String cod_jogador) {
+    public void setCod_jogador(Jogador cod_jogador) {
         this.cod_jogador = cod_jogador;
     }
 
