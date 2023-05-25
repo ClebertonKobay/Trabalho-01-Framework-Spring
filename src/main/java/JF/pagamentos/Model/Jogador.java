@@ -26,11 +26,19 @@ public class Jogador {
     private String email;
 
     @Column
-    private String datanasc;
+    private Date datanasc;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cod_jogador")
     @JoinColumn(name = "cod_jogador")
     private List<Pagamento> pagamentos;
+
+    public Jogador(){}
+
+    public Jogador(String nome, String email, Date datanasc){
+        this.nome =  nome;
+        this.email = email;
+        this.datanasc = datanasc; 
+    }
 
     public List<Pagamento> getPagamentos() {
         return this.pagamentos;
@@ -64,11 +72,11 @@ public class Jogador {
         this.email = email;
     };
 
-    public String getDatanasc() {
+    public Date getDatanasc() {
         return this.datanasc;
     }
 
-    public void setDatanasc(String datanasc) {
+    public void setDatanasc(Date datanasc) {
         this.datanasc = datanasc;
     }
 

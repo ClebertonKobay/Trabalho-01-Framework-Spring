@@ -27,6 +27,15 @@ public class Pagamento {
     @ManyToOne
     private Jogador cod_jogador;
 
+    public Pagamento(){}
+
+    public Pagamento(short ano, short mes, double valor, Jogador cod_jogador){
+        this.ano = ano;
+        this.mes = mes;
+        this.valor = valor;
+        this.cod_jogador = cod_jogador;
+    }
+
     public long getCod_pagamento() {
         return this.cod_pagamento;
     }
