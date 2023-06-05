@@ -16,50 +16,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import JF.pagamentos.Model.Pagamento;
-import JF.pagamentos.Repository.PagamentoRepository;
+import JF.pagamentos.Model.Jogador;
+import JF.pagamentos.Repository.JogadorRepository;
 
 @RestController
 @RequestMapping("/api")
-public class PagamentosController {
+public class JogadorController {
+
 
     @Autowired
-    PagamentoRepository rep;
+    JogadorRepository rep;
 
-    @PostMapping("/pagamentos")
-    public ResponseEntity<Pagamento> realizarPagamento(@RequestBody Pagamento pg){
+    @PostMapping("/Jogador")
+    public ResponseEntity<Jogador> realizarJogador(@RequestBody Jogador jg){
         try {
-            Pagamento _p = rep.save(new Pagamento(pg.getAno(),pg.getMes(),pg.getValor(),pg.getCod_jogador()));
+            Jogador _jg = rep.save(new Jogador(jg.getNome(),jg.getEmail(),jg.getDatanasc()));
 
-            return new ResponseEntity<>(_p, HttpStatus.CREATED);
+            return new ResponseEntity<>(_jg, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/pagamentos")
-    public ResponseEntity<List<Pagamento>> getPagamentos(@RequestParam(required= false) int cod_jogador){
+    @GetMapping("/Jogador")
+    public ResponseEntity<List<Jogador>> getJogadors(@RequestParam(required= false) String nome){
         try
         {
-            List<Pagamento> pg = new ArrayList<Pagamento>();
+            List<Jogador> jg = new ArrayList<Jogador>();
 
-            if (cod_jogador == 0)
+            if (nome == null)
                 rep.findAll();
             else 
-                rep.findbyJogador(cod_jogador);
-
-            if (pg.isEmpty())
+                rep.findByNome(nome);
+            
+            if (jg.isEmpty())
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             
-            return new ResponseEntity<>(pg, HttpStatus.OK);
+            return new ResponseEntity<>(jg, HttpStatus.OK);
         }
          catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @DeleteMapping("/pagamentos/{id}")
-    public ResponseEntity<HttpStatus> deletarPagamento(@PathVariable("id") long id){
+    @DeleteMapping("/Jogador/{id}")
+    public ResponseEntity<HttpStatus> deletarJogador(@PathVariable("id") long id){
         try {
             rep.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -68,26 +69,22 @@ public class PagamentosController {
         }
     }
 
-    @PutMapping("/pagamentos/{id}")
-    public ResponseEntity<Pagamento> updatePagamento(@PathVariable("id") long id, @RequestBody Pagamento pg)
+    @PutMapping("/Jogadors/{id}")
+    public ResponseEntity<Jogador> updateJogador(@PathVariable("id") long id, @RequestBody Jogador jg)
     {
-        Optional<Pagamento> data = rep.findById(id);
+        Optional<Jogador> data = rep.findById(id);
 
         if (data.isPresent())
         {
-            Pagamento pgNew = data.get();
-            pgNew.setAno(pg.getAno());
-            pgNew.setMes(pg.getMes());
-            pgNew.setValor(pg.getValor());
-            pgNew.setCod_jogador(pg.getCod_jogador());
-
+            Jogador jgNew = data.get();
+            jgNew.setNome(jg.getNome());
+            jgNew.setEmail(jg.getEmail());
+            jgNew.setDatanasc(jg.getDatanasc());
             
-            return new ResponseEntity<>(rep.save(pgNew), HttpStatus.OK);
+            return new ResponseEntity<>(rep.save(jgNew), HttpStatus.OK);
         }
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
-
-
 }
