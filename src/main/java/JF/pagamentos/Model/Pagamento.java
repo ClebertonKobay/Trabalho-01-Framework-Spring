@@ -1,4 +1,4 @@
-package JF.pagamentos.Model;
+package JF.Pagamentos.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,15 +25,15 @@ public class Pagamento {
     private double valor;
 
     @ManyToOne
-    private Jogador cod_jogador;
+    private Jogador jogador;
 
     public Pagamento(){}
 
-    public Pagamento(short ano, short mes, double valor, Jogador cod_jogador){
+    public Pagamento(short ano, short mes, double valor, Jogador jogador){
         this.ano = ano;
         this.mes = mes;
         this.valor = valor;
-        this.cod_jogador = cod_jogador;
+        this.jogador = jogador;
     }
 
     public long getCod_pagamento() {
@@ -68,12 +68,12 @@ public class Pagamento {
         this.valor = valor;
     }
 
-    public Jogador getCod_jogador() {
-        return this.cod_jogador;
+    public Jogador getJogador() {
+        return this.jogador;
     }
 
-    public void setCod_jogador(Jogador cod_jogador) {
-        this.cod_jogador = cod_jogador;
+    public void setJogador(Jogador jogador) {
+        this.jogador = jogador;
     }
 
 }

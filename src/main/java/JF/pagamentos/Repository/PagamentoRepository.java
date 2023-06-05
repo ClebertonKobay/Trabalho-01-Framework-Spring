@@ -1,10 +1,11 @@
-package JF.pagamentos.Repository;
+package JF.Pagamentos.Repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import JF.pagamentos.Model.Pagamento;
+import JF.Pagamentos.Model.Jogador;
+import JF.Pagamentos.Model.Pagamento;
 
 public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
 
@@ -12,5 +13,5 @@ public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
     
     List<Pagamento> findByMes(short mes);
 
-    List<Pagamento> findbyJogador(int cod_jogador);
+    List<Pagamento> findByJogador(Jogador jogador);
 }

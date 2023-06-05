@@ -1,4 +1,4 @@
-package JF.pagamentos.Model;
+package JF.Pagamentos.Model;
 
 import java.util.*;
 
@@ -28,7 +28,7 @@ public class Jogador {
     @Column
     private Date datanasc;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cod_jogador")
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "cod_jogador")
     private List<Pagamento> pagamentos;
 

@@ -1,4 +1,4 @@
-package JF.pagamentos.Control;
+package JF.Pagamentos.Control;
 
 import java.util.*;
 import java.util.Optional;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import JF.pagamentos.Model.Jogador;
-import JF.pagamentos.Repository.JogadorRepository;
+import JF.Pagamentos.Model.Jogador;
+import JF.Pagamentos.Repository.JogadorRepository;
 
 @RestController
 @RequestMapping("/api")
@@ -47,7 +47,7 @@ public class JogadorController {
             if (nome == null)
                 rep.findAll();
             else 
-                rep.findByNome(nome);
+                rep.findByNome(nome).forEach(jg::add);
             
             if (jg.isEmpty())
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

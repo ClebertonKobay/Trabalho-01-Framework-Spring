@@ -1,4 +1,4 @@
-package JF.pagamentos.Control;
+package JF.Pagamentos.Control;
 
 import java.util.*;
 import java.util.Optional;
@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import JF.pagamentos.Model.Pagamento;
-import JF.pagamentos.Repository.PagamentoRepository;
+import JF.Pagamentos.Model.Jogador;
+import JF.Pagamentos.Model.Pagamento;
+import JF.Pagamentos.Repository.PagamentoRepository;
 
 @RestController
 @RequestMapping("/api")
@@ -29,7 +30,7 @@ public class PagamentosController {
     @PostMapping("/pagamentos")
     public ResponseEntity<Pagamento> realizarPagamento(@RequestBody Pagamento pg){
         try {
-            Pagamento _p = rep.save(new Pagamento(pg.getAno(),pg.getMes(),pg.getValor(),pg.getCod_jogador()));
+            Pagamento _p = rep.save(new Pagamento(pg.getAno(),pg.getMes(),pg.getValor(),pg.getJogador()));
 
             return new ResponseEntity<>(_p, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -38,15 +39,15 @@ public class PagamentosController {
     }
 
     @GetMapping("/pagamentos")
-    public ResponseEntity<List<Pagamento>> getPagamentos(@RequestParam(required= false) int cod_jogador){
+    public ResponseEntity<List<Pagamento>> getPagamentos(@RequestParam(required= false) Jogador cod_jogador){
         try
         {
             List<Pagamento> pg = new ArrayList<Pagamento>();
 
-            if (cod_jogador == 0)
+            if (cod_jogador == null)
                 rep.findAll();
-            else 
-                rep.findbyJogador(cod_jogador);
+            else
+                rep.findByJogador(cod_jogador).forEach(pg::add);
 
             if (pg.isEmpty())
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -79,7 +80,7 @@ public class PagamentosController {
             pgNew.setAno(pg.getAno());
             pgNew.setMes(pg.getMes());
             pgNew.setValor(pg.getValor());
-            pgNew.setCod_jogador(pg.getCod_jogador());
+            pgNew.setJogador(pg.getJogador());
 
             
             return new ResponseEntity<>(rep.save(pgNew), HttpStatus.OK);
