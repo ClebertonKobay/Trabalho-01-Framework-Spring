@@ -39,13 +39,13 @@ public class JogadorController {
     }
 
     @GetMapping("/Jogador")
-    public ResponseEntity<List<Jogador>> getJogadors(@RequestParam(required= false) String nome){
+    public ResponseEntity<List<Jogador>> getJogadores(@RequestParam(required= false) String nome){
         try
         {
             List<Jogador> jg = new ArrayList<Jogador>();
 
             if (nome == null)
-                rep.findAll();
+                rep.findAll().forEach(jg::add);
             else 
                 rep.findByNome(nome).forEach(jg::add);
             
@@ -69,7 +69,7 @@ public class JogadorController {
         }
     }
 
-    @PutMapping("/Jogadors/{id}")
+    @PutMapping("/Jogador/{id}")
     public ResponseEntity<Jogador> updateJogador(@PathVariable("id") long id, @RequestBody Jogador jg)
     {
         Optional<Jogador> data = rep.findById(id);

@@ -13,24 +13,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import JF.Pagamentos.Model.Jogador;
 import JF.Pagamentos.Model.Pagamento;
 import JF.Pagamentos.Repository.PagamentoRepository;
+import JF.Pagamentos.Repository.JogadorRepository;
 
 @RestController
 @RequestMapping("/api")
 public class PagamentosController {
 
     @Autowired
-    PagamentoRepository rep;
+    PagamentoRepository repP;
+    @Autowired
+    JogadorRepository repJg;
 
-    @PostMapping("/pagamentos")
-    public ResponseEntity<Pagamento> realizarPagamento(@RequestBody Pagamento pg){
+    @PostMapping("/pagamentos/{id}")
+    public ResponseEntity<Pagamento> realizarPagamento(@RequestBody Pagamento pg, @PathVariable long id){
         try {
-            Pagamento _p = rep.save(new Pagamento(pg.getAno(),pg.getMes(),pg.getValor(),pg.getJogador()));
+            Optional<Jogador> jg = repJg.findById(id);
+
+            pg.setJogador(jg.get());
+
+            Pagamento _p = repP.save(new Pagamento(pg.getAno(),pg.getMes(),pg.getValor(),pg.getJogador()) );
 
             return new ResponseEntity<>(_p, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -39,18 +45,16 @@ public class PagamentosController {
     }
 
     @GetMapping("/pagamentos")
-    public ResponseEntity<List<Pagamento>> getPagamentos(@RequestParam(required= false) Jogador cod_jogador){
+    public ResponseEntity<List<Pagamento>> getPagamentos(){
         try
         {
             List<Pagamento> pg = new ArrayList<Pagamento>();
 
-            if (cod_jogador == null)
-                rep.findAll();
-            else
-                rep.findByJogador(cod_jogador).forEach(pg::add);
+            repP.findAll().forEach(pg::add);
 
-            if (pg.isEmpty())
+            if (pg.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
             
             return new ResponseEntity<>(pg, HttpStatus.OK);
         }
@@ -62,7 +66,7 @@ public class PagamentosController {
     @DeleteMapping("/pagamentos/{id}")
     public ResponseEntity<HttpStatus> deletarPagamento(@PathVariable("id") long id){
         try {
-            rep.deleteById(id);
+            repP.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -72,7 +76,7 @@ public class PagamentosController {
     @PutMapping("/pagamentos/{id}")
     public ResponseEntity<Pagamento> updatePagamento(@PathVariable("id") long id, @RequestBody Pagamento pg)
     {
-        Optional<Pagamento> data = rep.findById(id);
+        Optional<Pagamento> data = repP.findById(id);
 
         if (data.isPresent())
         {
@@ -83,7 +87,7 @@ public class PagamentosController {
             pgNew.setJogador(pg.getJogador());
 
             
-            return new ResponseEntity<>(rep.save(pgNew), HttpStatus.OK);
+            return new ResponseEntity<>(repP.save(pgNew), HttpStatus.OK);
         }
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

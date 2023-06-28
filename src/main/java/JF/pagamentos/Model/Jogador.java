@@ -2,13 +2,14 @@ package JF.Pagamentos.Model;
 
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -27,10 +28,10 @@ public class Jogador {
 
     @Column
     private Date datanasc;
-    
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_jogador")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jogador")
     private List<Pagamento> pagamentos;
+   
 
     public Jogador(){}
 
