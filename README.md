@@ -3,7 +3,7 @@
     <p>URL<code>"http://localhost:8080/api"</code>: url da API</p>
    <h3>EndPoints</h3>
 
-  <div class="route">
+  <div>
     <h3>Rota do Jogador</h3>
     <p>GET <code>"/Jogador"</code>: Mostra todos os jogadores</p>
     <p>POST <code>"/Jogador"</code>: insere no banco um jogador enviando um JSON com as dados {nome, email e datanasc}</p>
@@ -13,7 +13,7 @@
     <p>DELETE <code>"/Jogador"</code>: Apaga todos os jogadores</p>
   </div>
 
-  <div class="route">
+  <div>
     <h3>Rota de Pagamento</h3>
     <p>GET <code>"/pagamentos"</code>: Mostra todos os pagamentos</p>
     <p>POST <code>"/pagamentos/{id}"</code>: insere um pagamento passando o id do jogador e passando um JSON com os dados {ano, mes e valor}</p>
@@ -22,3 +22,8 @@
     <p>DELETE <code>"/pagamentos/{id}"</code>: Apaga um pagamento pelo id </p>
     <p>DELETE <code>"/pagamentos"</code>: Apaga todos os pagamentos</p>
   </div>
+
+<h3>Grupo</h3>
+<p>Cleberton Kobay dos Santos RA:<code>20017326</code></p>
+<p>Mateus José da Silva Gomes RA:<code>19007526</code></p>
+<p>Matheus Bueno Bartkevicius RA:<code>20006726</code></p>
