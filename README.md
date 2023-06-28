@@ -1,6 +1,5 @@
-
-<body>
-  <h1>Projeto Pagamentos Futebol</h1>
+<h1>Trabalho 01 - Framework Spring</h1>
+<h2>Projeto Pagamentos Futebol</h2>
     <p>URL<code>"http://localhost:8080/api"</code>: url da API</p>
    <h3>EndPoints</h3>
 
@@ -23,4 +22,3 @@
     <p>DELETE <code>"/pagamentos/{id}"</code>: Apaga um pagamento pelo id </p>
     <p>DELETE <code>"/pagamentos"</code>: Apaga todos os pagamentos</p>
   </div>
-</body>
