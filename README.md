@@ -1,51 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Projeto Pagamentos Futebol</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
 
-    h1 {
-      text-align: center;
-    }
-
-    h2 {
-      margin-top: 30px;
-    }
-
-    p {
-      margin-bottom: 10px;
-    }
-
-    code {
-      background-color: #f0f0f0;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    .route {
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      padding: 10px;
-      margin-bottom: 20px;
-    }
-
-    .route h3 {
-      margin-top: 0;
-    }
-
-    .route p {
-      margin-bottom: 5px;
-    }
-
-    .route code {
-      background-color: #e0e0e0;
-    }
-  </style>
-</head>
 <body>
   <h1>Projeto Pagamentos Futebol</h1>
     <p>URL<code>"http://localhost:8080/api"</code>: url da API</p>
@@ -72,4 +25,3 @@
     <p>DELETE <code>"/pagamentos"</code>: deletar todos os pagamentos</p>
   </div>
 </body>
-</html>
