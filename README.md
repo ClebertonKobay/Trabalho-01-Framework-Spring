@@ -6,22 +6,21 @@
 
   <div class="route">
     <h3>Rota de Jogador</h3>
-    <p>GET <code>"/Jogador"</code>: buscar todos os jogadores</p>
-    <p>POST <code>"/Jogador"</code>: criar um novo jogador, deve ser passador um JSON com as informações [nome, email e dataNasc]</p>
-    <p>GET <code>"/Jogador/{id}"</code>: buscar um jogador, deve ser informado um id em <code>{id}</code></p>
-    <p>PUT <code>"/Jogador/{id}"</code>: atualizar dados de um jogador, deve ser informado um id em <code>{id}</code>, deve ser passador um JSON com as informações [nome, email e dataNasc]</p>
-    <p>DELETE <code>"/Jogador/{id}"</code>: deletar um jogador, deve ser informado um id em <code>{id}</code></p>
-    <p>DELETE <code>"/Jogador"</code>: deletar todos os jogadores</p>
+    <p>GET <code>"/Jogador"</code>: Mostra todos os jogadores</p>
+    <p>POST <code>"/Jogador"</code>: insere no banco um jogador enviando um JSON com as dados {nome, email e datanasc}</p>
+    <p>GET <code>"/Jogador/{id}"</code>: busca um jogador pelo id</p>
+    <p>PUT <code>"/Jogador/{id}"</code>: atualiza os dados de um jogador com id informado na url passando um JSON com os dados {nome, email e datanasc}</p>
+    <p>DELETE <code>"/Jogador/{id}"</code>: deletar um jogador passando um id</p>
+    <p>DELETE <code>"/Jogador"</code>: Apaga todos os jogadores</p>
   </div>
 
   <div class="route">
     <h3>Rota de Pagamento</h3>
-    <p>GET <code>"/pagamentos"</code>: buscar todos os pagamentos</p>
-    <p>GET <code>"/pagamentos/jogador/{id}"</code>: buscar todos os pagamentos de um determinado jogador, deve ser informado o id do jogador em <code>{id}</code></p>
-    <p>POST <code>"/pagamentos/{id}"</code>: criar um novo pagamento, deve ser informado o id do jogador em <code>{id}</code>, deve ser passador um JSON com as informações [ano, mes e valor]</p>
-    <p>GET <code>"/pagamentos/{id}"</code>: buscar um pagamento, deve ser informado um id de pagamento em <code>{id}</code></p>
-    <p>PUT <code>"/pagamentos/{id}/{id_jogador}"</code>: atualizar dados de um pagamento, deve ser informado um id de pagamento em <code>{id}</code> e um id de jogador em <code>{id_jogador}</code>, deve ser passador um JSON com as informações [ano, mes e valor]</p>
-    <p>DELETE <code>"/pagamentos/{id}"</code>: deletar um pagamento, deve ser informado um id de pagamento em <code>{id}</code></p>
-    <p>DELETE <code>"/pagamentos"</code>: deletar todos os pagamentos</p>
+    <p>GET <code>"/pagamentos"</code>: Mostra todos os pagamentos</p>
+    <p>POST <code>"/pagamentos/{id}"</code>: insere um pagamento passando o id do jogadore passando um JSON com os dados {ano, mes e valor}</p>
+    <p>GET <code>"/pagamentos/{id}"</code>: busca um pagamento pelo id</p>
+    <p>PUT <code>"/pagamentos/{id}"</code>: atualiza dados de um pagamento, passando o id do pagamento a ser modificado e passando um JSON com os dados {ano, mes e valor}</p>
+    <p>DELETE <code>"/pagamentos/{id}"</code>: Apaga um pagamento pelo id </p>
+    <p>DELETE <code>"/pagamentos"</code>: Apaga todos os pagamentos</p>
   </div>
 </body>
