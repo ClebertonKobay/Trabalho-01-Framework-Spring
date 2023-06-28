@@ -69,6 +69,16 @@ public class JogadorController {
         }
     }
 
+    @DeleteMapping("/Jogador/")
+    public ResponseEntity<HttpStatus> deletarJogador(){
+        try {
+            rep.deleteAll();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("/Jogador/{id}")
     public ResponseEntity<Jogador> updateJogador(@PathVariable("id") long id, @RequestBody Jogador jg)
     {

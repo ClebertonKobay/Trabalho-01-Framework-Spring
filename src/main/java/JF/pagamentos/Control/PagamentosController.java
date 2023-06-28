@@ -72,6 +72,15 @@ public class PagamentosController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+     @DeleteMapping("/pagamentos")
+    public ResponseEntity<HttpStatus> deletarPagamento(){
+        try {
+            repP.deleteAll();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PutMapping("/pagamentos/{id}")
     public ResponseEntity<Pagamento> updatePagamento(@PathVariable("id") long id, @RequestBody Pagamento pg)
